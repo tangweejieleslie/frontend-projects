@@ -22,12 +22,10 @@
         </li>
       </ul>
 
-  
-    <div class="flex-container">
+
       <div class="main">
-        Main
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, impedit facilis doloribus ducimus reprehenderit repudiandae sit, eos accusantium temporibus soluta numquam quasi unde nisi quaerat officiis suscipit quos iure rem.
       </div>
-    </div>
 
 
   </div>
@@ -53,7 +51,7 @@ export default {
 }
 .main-nav{
   position: absolute;
-  left: 200px;
+  left: 600px;
   font-size: 50px;
   z-index: -1;
 }
@@ -73,10 +71,16 @@ li{
 
 
 .main {
-  width: 60%;
-  height: 60%;
-
+  height: 480px;
+  width: 960px;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -240px;
+  margin-left: -480px;
   background-color: antiquewhite;
+  z-index: 1;
 }
 
 .nav-box {
@@ -87,25 +91,25 @@ li{
 }
 
 .upper-left {
-  background-color: purple;
+  /* background-color: purple; */
   top: 0;
   left: 0;
 }
 
 .upper-right {
-  background-color: gray;
+  /* background-color: gray; */
   top: 0;
   right: 0;
 }
 
 .lower-left {
-  background-color: purple;
+  /* background-color: purple; */
   bottom: 0;
   left: 0;
 }
 
 .lower-right {
-  background-color: gray;
+  /* background-color: gray; */
   bottom: 0;
   right: 0;
 }
