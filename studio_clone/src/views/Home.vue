@@ -10,9 +10,17 @@
     <div class="lower-left nav-box">
       container 1
     </div>
+
     <div class="lower-right nav-box">
       container 1
     </div>
+
+
+      <ul class="main-nav">
+        <li v-for="item in items" v-bind:key="item.id" class="selected"> 
+          {{ item }}
+        </li>
+      </ul>
 
   
     <div class="flex-container">
@@ -30,11 +38,30 @@
 
 export default {
   name: "home",
-  components: {}
+  components: {},
+  data(){
+    return{
+      items: ["Pasir Ris", "Tampines", "Simei", "Tanah Merah", "Bedok", "Kembangan", "Eunos", "Paya Lebar", "Macpherson", "Bugis", "Lavendar"]
+    }
+  }
 };
 </script>
 
 <style scoped>
+.selected{
+  opacity: 0.99;
+}
+.main-nav{
+  position: absolute;
+  left: 200px;
+  font-size: 50px;
+  z-index: -1;
+}
+
+li{
+  list-style: none;
+}
+
 .flex-container{
   display:flex;
   justify-content: center;
@@ -46,8 +73,8 @@ export default {
 
 
 .main {
-  width: 70%;
-  height: 50%;
+  width: 60%;
+  height: 60%;
 
   background-color: antiquewhite;
 }
