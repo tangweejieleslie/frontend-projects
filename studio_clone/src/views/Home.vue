@@ -17,6 +17,9 @@
 
 
       <ul class="main-nav">
+        <li class="first-list">
+          this is relative
+        </li>
         <li v-for="item in items" v-bind:key="item.id" class="selected"> 
           {{ item }}
         </li>
@@ -46,6 +49,9 @@ export default {
 </script>
 
 <style scoped>
+.first-list{
+  position: relative;
+}
 .selected{
   opacity: 0.99;
 }
@@ -58,6 +64,7 @@ export default {
 
 li{
   list-style: none;
+  position: absolute;
 }
 
 .flex-container{
