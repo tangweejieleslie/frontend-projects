@@ -1,12 +1,18 @@
 <template>
   <div class="home">
     <h1>SW Stats</h1>
+    <h2>Swift Runes. Slot 1</h2>
+    <div v-for="rune in swiftRunes[1]" v-bind:key="rune.rune_id">
+      {{ rune.all_stats }}
+    </div>
   </div>
 </template>
 
 <script>
 import rawdata from "@/rawdata.json";
 import mappings from "@/mappings.js";
+
+var fs = require('fs');
 
 // console.log(rawdata.runes);
 // console.log(rawdata.unit_list); //unit list is an array of object
@@ -34,6 +40,8 @@ function get_all_runes() {
 function organize_runes(runes) {
   let runes_array = {};
   const rune_map = mappings.rune;
+  const rune_set = rune_map.sets;
+  const rune_stat_id = rune_map.effectTypes;
 
   // initialize each rune set with an empty array
   for (var key in rune_map.sets) {
@@ -73,12 +81,44 @@ function add_rune_stats(runes) {
   return runes;
 }
 
+function get_essential_data(runes){
+  const rune_map = mappings.rune;
+  const rune_set = rune_map.sets;
+  const rune_stat_id = rune_map.effectTypes;
+
+  let essential_data = [], i = 0;
+
+  for(i=0;i<runes.length;i++){
+    let temp_rune = {};
+    let rune = runes[i];
+    temp_rune.rune_set = rune_set[rune.set_id];  
+    let j = 0;
+    temp_rune.level = rune.upgrade_curr;
+    temp_rune.rank = rune.rank;
+    temp_rune.class = rune.class;
+    temp_rune.slot_no = rune.slot_no;
+
+    for(j = 1; j < rune.all_stats.length; j++){
+        temp_rune[rune_stat_id[j]] = rune.all_stats[j];
+    }
+    essential_data.push(temp_rune);
+  }
+
+  // fs. writeFile("file.json", essential_data);
+  console.log(essential_data[0]);
+  return essential_data;
+}
+
+
+let ALLRUNES;
 
 function main(){
   const all_runes = get_all_runes();
-  add_rune_stats(all_runes)
+  add_rune_stats(all_runes);
+  get_essential_data(all_runes);
   let runes_by_set = organize_runes(all_runes);
-  console.log(runes_by_set);
+  console.log(runes_by_set[1][1][1]);  
+  ALLRUNES = runes_by_set;
 }
 
 
@@ -86,6 +126,11 @@ main();
 
 export default {
   name: "home",
-  components: {}
+  components: {},
+data: function () {
+    return {
+      swiftRunes: ALLRUNES[3]
+    }
+  },
 };
 </script>
