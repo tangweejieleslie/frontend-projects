@@ -11,7 +11,7 @@ import mappings from '@/mappings.js'
 // console.log(rawdata.runes);
 // console.log(rawdata.unit_list); //unit list is an array of object
 
-console.log(rawdata.unit_list[0].runes);  
+console.log(mappings);  
 
 function get_all_runes(){
   // Get list of rune data from inventory
@@ -24,12 +24,36 @@ function get_all_runes(){
     for(j = 0; j < rawdata.unit_list[i].runes.length; j++){
       rune_array.push(rawdata.unit_list[i].runes[j])
     }
-    
   }
-  console.log(rune_array);
+  // console.log(rune_array);
+  return rune_array;
 }
 
-get_all_runes();
+const all_runes = get_all_runes();
+
+function organize_runes(runes){
+  
+  let runes_array = {};
+  const rune_map = mappings.rune;
+  
+  // initialize each rune set with an empty array
+  for(var key in rune_map.sets){
+    runes_array[key] = [];
+  }
+  
+  let i = 0;
+  for(i=0;i<runes.length;i++){
+    let setid = runes[i].set_id;
+    runes_array[setid].push(runes[i]); 
+  }
+  // console.log(runes_array);
+  return runes_array;
+}
+
+let runes_by_set = organize_runes(all_runes);
+console.log(runes_by_set);
+
+
 
 export default {
   name: 'home',
