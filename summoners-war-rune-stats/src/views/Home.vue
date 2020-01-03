@@ -37,13 +37,14 @@ function organize_runes(runes) {
 
   // initialize each rune set with an empty array
   for (var key in rune_map.sets) {
-    runes_array[key] = [];
+    runes_array[key] = [[],[],[],[],[],[],[]];
   }
 
   let i = 0;
   for (i = 0; i < runes.length; i++) {
     let setid = runes[i].set_id;
-    runes_array[setid].push(runes[i]);
+    let slot = runes[i].slot_no;
+    runes_array[setid][slot].push(runes[i]);
   }
   // console.log(runes_array);
   return runes_array;
