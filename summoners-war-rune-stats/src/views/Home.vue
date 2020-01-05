@@ -12,7 +12,7 @@
 import rawdata from "@/rawdata.json";
 import mappings from "@/mappings.js";
 
-var fs = require('fs');
+var fs = require("fs");
 
 // console.log(rawdata.runes);
 // console.log(rawdata.unit_list); //unit list is an array of object
@@ -36,7 +36,6 @@ function get_all_runes() {
   return rune_array;
 }
 
-
 function organize_runes(runes) {
   let runes_array = {};
   const rune_map = mappings.rune;
@@ -45,7 +44,7 @@ function organize_runes(runes) {
 
   // initialize each rune set with an empty array
   for (var key in rune_map.sets) {
-    runes_array[key] = [[],[],[],[],[],[],[]];
+    runes_array[key] = [[], [], [], [], [], [], []];
   }
 
   let i = 0;
@@ -58,7 +57,6 @@ function organize_runes(runes) {
   return runes_array;
 }
 
-
 // add an "overall_stat" property to each rune for easy computation
 function add_rune_stats(runes) {
   let i = 0;
@@ -67,11 +65,11 @@ function add_rune_stats(runes) {
     let secondary_stat = runes[i].prefix_eff;
     let remaining_stats = runes[i].sec_eff;
     let overall_stat = [];
-    overall_stat[primary_stat[0]] = primary_stat[1]; 
-    overall_stat[secondary_stat[0]] = secondary_stat[1]; 
+    overall_stat[primary_stat[0]] = primary_stat[1];
+    overall_stat[secondary_stat[0]] = secondary_stat[1];
 
     let j = 0;
-    for(j=0;j<remaining_stats.length; j++){
+    for (j = 0; j < remaining_stats.length; j++) {
       let temp_stat = remaining_stats[j];
       overall_stat[temp_stat[0]] = temp_stat[1] + temp_stat[3]; // 1: value, 3: grinded value if any
     }
@@ -81,56 +79,76 @@ function add_rune_stats(runes) {
   return runes;
 }
 
-function get_essential_data(runes){
+// https://stackoverflow.com/questions/48611671/vue-js-write-json-object-to-local-file
+function saveFile(target_json) {
+  // const data = JSON.stringify(target_json);
+  // window.localStorage.setItem("arr", data);
+  // console.log(JSON.parse(window.localStorage.getItem("arr")));
+
+    const data = JSON.stringify(target_json)
+    const blob = new Blob([data], {type: 'text/plain'})
+    const e = document.createEvent('MouseEvents'),
+    a = document.createElement('a');
+    a.download = "test.json";
+    a.href = window.URL.createObjectURL(blob);
+    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+    e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    a.dispatchEvent(e);
+}
+
+
+
+function get_essential_data(runes) {
   const rune_map = mappings.rune;
   const rune_set = rune_map.sets;
   const rune_stat_id = rune_map.effectTypes;
 
-  let essential_data = [], i = 0;
+  let essential_data = [],
+    i = 0;
 
-  for(i=0;i<runes.length;i++){
+  for (i = 0; i < runes.length; i++) {
     let temp_rune = {};
     let rune = runes[i];
-    temp_rune.rune_set = rune_set[rune.set_id];  
+    temp_rune.rune_set = rune_set[rune.set_id];
     let j = 0;
     temp_rune.level = rune.upgrade_curr;
     temp_rune.rank = rune.rank;
     temp_rune.class = rune.class;
     temp_rune.slot_no = rune.slot_no;
 
-    for(j = 1; j < rune.all_stats.length; j++){
-        temp_rune[rune_stat_id[j]] = rune.all_stats[j];
+    for (j = 1; j < rune.all_stats.length; j++) {
+      temp_rune[rune_stat_id[j]] = rune.all_stats[j];
     }
     essential_data.push(temp_rune);
   }
 
   // fs. writeFile("file.json", essential_data);
-  console.log(essential_data[0]);
+  // console.log(essential_data[0]);
+  saveFile(essential_data);
   return essential_data;
 }
 
 
 let ALLRUNES;
 
-function main(){
+function main() {
   const all_runes = get_all_runes();
   add_rune_stats(all_runes);
   get_essential_data(all_runes);
   let runes_by_set = organize_runes(all_runes);
-  console.log(runes_by_set[1][1][1]);  
+  // console.log(runes_by_set[1][1][1]);
   ALLRUNES = runes_by_set;
 }
-
 
 main();
 
 export default {
   name: "home",
   components: {},
-data: function () {
+  data: function() {
     return {
       swiftRunes: ALLRUNES[3]
-    }
-  },
+    };
+  }
 };
 </script>
