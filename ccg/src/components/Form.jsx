@@ -38,14 +38,14 @@ class Form extends Component {
           <input
             type="text"
             id="name"
-            onChange={(e) => this.handleInputChange(e)}
+            onChange={e => this.handleInputChange(e)}
           ></input>
           <br></br>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
-            onChange={(e) => this.handleInputChange(e)}
+            onChange={e => this.handleInputChange(e)}
           ></input>
         </form>
         <h1>Child</h1>
