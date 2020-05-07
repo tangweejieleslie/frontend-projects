@@ -48,5 +48,10 @@
 }
 
 li a {
+  font-size: 20px;
+  color:blue;
+  text-transform: uppercase;
   text-decoration: none;
+  font-weight: bold;
+  text-shadow: 2px 2px #fafafa;
 }
