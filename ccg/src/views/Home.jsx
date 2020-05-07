@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import Child from "../components/Home/ChildrenComponent";
+import Form from "../components/Form";
 import './Home.css'
 
 class ComponentName extends Component {
@@ -32,6 +33,7 @@ class ComponentName extends Component {
           Change Child
         </Button>
         <Child date={this.state.date}></Child>
+        <Form></Form>
       </div>
     );
   }

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import './Child.css'
-import {helloworld } from '../../helpers/data_processor'
+// import {helloworld } from '../../helpers/data_processor'
 
+// helloworld("name");
 
 class ChildOfChild extends Component {
   constructor(props) {
