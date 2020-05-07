@@ -24,7 +24,7 @@ class Child extends Component {
     return (
       <div className="Child">
         <h2>Parent Affects Child</h2>
-        {this.state.newDate}
+        { this.state.newDate}
         <COC date={this.state.newDate.toLocaleString()}></COC>
       </div>
     );

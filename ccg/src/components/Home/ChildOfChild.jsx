@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import './Child.css'
+import {helloworld } from '../../helpers/data_processor'
+
 
 class ChildOfChild extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class ChildOfChild extends Component {
     return (
       <div className="Child">
         <h2>Child Affects Child 2</h2>
-        {this.state.newDate}
+        Locale String: {this.state.newDate}
 
       </div>
     );
