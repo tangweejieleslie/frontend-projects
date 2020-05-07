@@ -4,13 +4,23 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import "./App.css";
-import HomeView from "./views/Home";
+import HomeView from "./views/Home/HomeView";
 import FormView from "./views/Form/FormView";
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <nav>
+          <ul className="linksContainer">
+            <li className="linksUL">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="linksUL">
+              <Link to="/Form">Form</Link>
+            </li>
+          </ul>
+        </nav>
         <Switch>
           <Route path="/form">
             <FormView></FormView>

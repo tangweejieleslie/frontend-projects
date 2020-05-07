@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import Child from "../components/Home/ChildrenComponent";
+import Child from "../../components/Home/ChildrenComponent";
 import './Home.css'
 
 class ComponentName extends Component {
