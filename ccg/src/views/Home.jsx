@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button";
+import Child from "../components/Home/ChildrenComponent";
 
 class ComponentName extends Component {
   constructor(props) {
@@ -10,24 +10,35 @@ class ComponentName extends Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.date !== prevProps.date) {
-      this.setState({
-        date: this.props.date,
-      });
-    }
+  componentDidUpdate(prev) {}
+
+  handleClick(e) {
+      console.log(e);
+    this.setState({
+      date: Date.now(),
+    });
   }
+
   render() {
     //   https://material-ui.com/getting-started/usage/
     return (
       <div>
         <h1>{this.state.date}</h1>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(e) => this.handleClick(e)}
+        >
           Hello World
         </Button>
+        <Child date={this.state.date}></Child>
       </div>
     );
   }
 }
 
 export default ComponentName;
+
+// https://stackoverflow.com/questions/47497090/react-how-to-pass-props-from-onclick-to-function/47497741
+// https://reactjs.org/docs/faq-functions.html
+// https://www.freecodecamp.org/news/react-changing-state-of-child-component-from-parent-8ab547436271/
