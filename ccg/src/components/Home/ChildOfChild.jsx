@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import './Child.css';
-import COC from './ChildOfChild';
+import './Child.css'
 
-class Child extends Component {
+class ChildOfChild extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,9 +12,8 @@ class Child extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.date !== prevProps.date) {
-      let date = this.props.date;
       this.setState({
-        newDate: date,
+        newDate: this.props.date,
       });
     }
   }
@@ -23,12 +21,12 @@ class Child extends Component {
     //   https://material-ui.com/getting-started/usage/
     return (
       <div className="Child">
-        <h2>Parent Affects Child</h2>
+        <h2>Child Affects Child 2</h2>
         {this.state.newDate}
-        <COC date={this.state.newDate.toLocaleString()}></COC>
+
       </div>
     );
   }
 }
 
-export default Child;
+export default ChildOfChild;

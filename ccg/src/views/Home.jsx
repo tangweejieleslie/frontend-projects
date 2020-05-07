@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import Child from "../components/Home/ChildrenComponent";
+import './Home.css'
 
 class ComponentName extends Component {
   constructor(props) {
@@ -13,7 +14,6 @@ class ComponentName extends Component {
   componentDidUpdate(prev) {}
 
   handleClick(e) {
-      console.log(e);
     this.setState({
       date: Date.now(),
     });
@@ -22,14 +22,14 @@ class ComponentName extends Component {
   render() {
     //   https://material-ui.com/getting-started/usage/
     return (
-      <div>
+      <div className="Home">
         <h1>{this.state.date}</h1>
         <Button
           variant="contained"
           color="primary"
           onClick={(e) => this.handleClick(e)}
         >
-          Hello World
+          Change Child
         </Button>
         <Child date={this.state.date}></Child>
       </div>
