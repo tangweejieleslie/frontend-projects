@@ -8,6 +8,7 @@ class Filters extends Component {
     this.state = {
       filter: "",
       filterList: ["Violent", "Will", "Swift"],
+      selected: ""
     };
   }
 
@@ -18,9 +19,11 @@ class Filters extends Component {
 
   // https://stackoverflow.com/questions/29280445/reactjs-setstate-with-a-dynamic-key-name
   handleClick(e) {
+    console.log(e.target.id);
+    // console.log(e.target.name);
     let filterId = e.target.id;
     this.setState({
-      [filterId]: e.target.value,
+      selected: e.target.id,
     });
   }
 
@@ -34,7 +37,10 @@ class Filters extends Component {
     // return filterList;
   }
 
-  array = [{ name: "Queen" }, { name: "King" }];
+  array = [
+    { name: "Queen", id: "Q" },
+    { name: "King", id: "K" },
+  ];
 
   render() {
     return (
@@ -43,11 +49,15 @@ class Filters extends Component {
 
         {this.array.map((item, i) => (
           <div>
-            <h1>{item.name}</h1>
+            <button id={item.id} onClick={(e) => this.handleClick(e)}>
+              {item.name}
+            </button>
           </div>
         ))}
 
-        <button>hi</button>
+          <div>
+            Clicked Value: {this.state.selected}
+          </div>
       </div>
     );
   }
