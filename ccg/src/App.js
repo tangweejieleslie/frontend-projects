@@ -7,6 +7,7 @@ import "./App.css";
 import HomeView from "./views/Home/HomeView";
 import FormView from "./views/Form/FormView";
 import MaterialForm from "./views/MaterialForm/Form";
+import FilterControlView from "./views/FilterControl";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             <li className="linksUL">
               <Link to="/MaterialForm">Material Form</Link>
             </li>
+            <li className="linksUL">
+              <Link to="/FilterControl">Filter Control</Link>
+            </li>            
           </ul>
         </nav>
         <Switch>
@@ -32,6 +36,9 @@ function App() {
           <Route path="/MaterialForm">
             <MaterialForm></MaterialForm>
           </Route>
+          <Route path="/FilterControl">
+            <FilterControlView></FilterControlView>
+          </Route>          
           {/* Note that '/' path should be the last, since it will return the first match */}
           <Route path="/">
             <HomeView></HomeView>
