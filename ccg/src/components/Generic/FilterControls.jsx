@@ -8,7 +8,7 @@ class Filters extends Component {
     this.state = {
       filter: "",
       filterList: ["Violent", "Will", "Swift"],
-      selected: ""
+      selected: "",
     };
   }
 
@@ -48,16 +48,16 @@ class Filters extends Component {
         {/* {this.renderControls(this.state.filterList)} */}
 
         {this.array.map((item, i) => (
-          <div>
-            <button id={item.id} onClick={(e) => this.handleClick(e)}>
-              {item.name}
-            </button>
-          </div>
+          <button
+            key={item.id}
+            id={item.id}
+            onClick={(e) => this.handleClick(e)}
+          >
+            {item.name}
+          </button>
         ))}
 
-          <div>
-            Clicked Value: {this.state.selected}
-          </div>
+        <div>Clicked Value: {this.state.selected}</div>
       </div>
     );
   }
