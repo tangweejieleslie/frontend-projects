@@ -24,20 +24,30 @@ class Filters extends Component {
     });
   }
 
-  render() {
+  renderControls(controlList) {
     let filterList = [];
-    let AllFilters = this.state.filterList;
-    for (let i = 0; AllFilters.length; i++) {
-      let item = AllFilters[i];
+    for (let i = 0; controlList.length; i++) {
+      let item = controlList[i];
       filterList.push(<input id={item}>{item}</input>);
     }
+    console.log(filterList);
+    // return filterList;
+  }
+
+  array = [{ name: "Queen" }, { name: "King" }];
+
+  render() {
     return (
       <div>
-        {/* {filterList}
-         */}
-         <button>
-         hi
-         </button>
+        {/* {this.renderControls(this.state.filterList)} */}
+
+        {this.array.map((item, i) => (
+          <div>
+            <h1>{item.name}</h1>
+          </div>
+        ))}
+
+        <button>hi</button>
       </div>
     );
   }
