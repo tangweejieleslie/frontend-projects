@@ -19,7 +19,7 @@ class Filters extends Component {
 
   // https://stackoverflow.com/questions/29280445/reactjs-setstate-with-a-dynamic-key-name
   handleClick(e) {
-    console.log(e.target.id);
+    // console.log(e.target.id);
     // console.log(e.target.name);
     let filterId = e.target.id;
     this.setState({
